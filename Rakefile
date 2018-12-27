@@ -14,3 +14,15 @@ desc 'drop into the Pry console'
 task :console => :environment do
   Pry.start
 end
+
+namespace :db do 
+  desc 'creates the students table in the database'
+  task :migrate => :environment do
+    Student.create_table 
+  end 
+  
+  desc 'seeds the database with dummy data from a seed file'
+  task :seed do 
+    require_relative './db/seeds.rb'
+  end 
+end 
